@@ -10,6 +10,7 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author sumutella
@@ -24,6 +25,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public List<RecipeDto> getRecipes() {
-        return null;
+        List<RecipeDto> recipeDtos = recipeRepository.findAll().stream().map(recipeMapper::entityToDto).collect(Collectors.toList());
+        return recipeDtos;
     }
 }
